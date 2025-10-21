@@ -49,19 +49,19 @@ class UserRolePermissionSeeder extends Seeder
         # create users
         $adminUser = User::factory()->create([
             'name'      => 'Admin User',
-            'email'     => 'admin@example',
+            'email'     => 'admin@example.com',
             'password'  => bcrypt('password'),
         ]);
 
         $commenterUser = User::factory()->create([
             'name'      => 'Commenter User',
-            'email'     => 'commenter@example',
+            'email'     => 'commenter@example.com',
             'password'  => bcrypt('password'),
         ]);
 
         $userUser = User::factory()->create([
             'name'      => 'User User',
-            'email'     => 'user@example',
+            'email'     => 'user@example.com',
             'password'  => bcrypt('password'),
         ]);
 
