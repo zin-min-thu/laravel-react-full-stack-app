@@ -36,6 +36,14 @@ export default function Authenticated({
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('feature.index')}
+                                    active={route().current('feature.index')}
+                                >
+                                    Features
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
@@ -138,6 +146,14 @@ export default function Authenticated({
                             active={route().current('dashboard')}
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                    </div>
+                    <div className="space-y-1 pb-3 pt-2">
+                        <ResponsiveNavLink
+                            href={route('feature.index')}
+                            active={route().current('feature.index')}
+                        >
+                            Features
                         </ResponsiveNavLink>
                     </div>
 
