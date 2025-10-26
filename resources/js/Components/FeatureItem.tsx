@@ -1,6 +1,7 @@
 import { Feature } from "@/types";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
+import FeatureActiosDropdown from "./FeatureActiosDropdown";
 
 export default function FeatureItem({feature}: {feature: Feature}) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -27,11 +28,14 @@ export default function FeatureItem({feature}: {feature: Feature}) {
                         <Link href={route('feature.show', feature.id)}>{feature.name}</Link>
                     </h2>
                     <p>
-                        {isExpanded ? feature.description : `${feature.description.substring(0, 100)}...`}
+                        {isExpanded ? feature.description : `${feature.description.substring(0, 200)}...`}
                     </p>
                     <button className="text-blue-500 hover:underline" onClick={toggleReadmore}>
                         {isExpanded ? 'Read less' : 'Read more'}
                     </button>
+                </div>
+                <div>
+                    <FeatureActiosDropdown feature={feature} />
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FeatureStoreRequest;
+use App\Http\Requests\FeatureUpdateRequest;
 use App\Http\Resources\FeatureResource;
 use App\Interfaces\FeatureRepositoryInterface;
 use App\Models\Feature;
@@ -25,17 +26,11 @@ class FeatureController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return Inertia::render('Feature/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(FeatureStoreRequest $request)
     {
         $validated = $request->validated();
@@ -45,9 +40,6 @@ class FeatureController extends Controller
         return to_route('feature.index')->with('success', 'Feature created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Feature $feature)
     {
         return Inertia::render('Feature/Show', [
@@ -55,9 +47,6 @@ class FeatureController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Feature $feature)
     {
         return Inertia::render('Feature/Edit', [
@@ -65,27 +54,18 @@ class FeatureController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Feature $feature)
+    public function update(FeatureUpdateRequest $request, Feature $feature)
     {
-        $data = [
-            'name' => $request->name,
-            'description' => $request->description,
-        ];
+        $validated = $request->validated();
 
-        $feature->update($data);
+        $this->featureRepository->update($feature, $validated);
 
         return to_route('feature.index')->with('success', 'Feature updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Feature $feature)
     {
-        $feature->delete();
+        $this->featureRepository->delete($feature);
 
         return to_route('feature.index')->with('success', 'Feature deleted successfully');
     }

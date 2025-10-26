@@ -9,8 +9,7 @@ import { FormEventHandler } from 'react';
 import TextAreaInput from '@/Components/TextAreaInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 
-export default function Index() {
-
+export default function Create() {
     const{
         data,
         setData,

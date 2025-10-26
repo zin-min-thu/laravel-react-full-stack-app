@@ -11,7 +11,8 @@ export default function Authenticated({
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
-    console.log(user);
+    const success : any = usePage().props.success;
+    const error : any = usePage().props.error;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -189,6 +190,26 @@ export default function Authenticated({
                         {header}
                     </div>
                 </header>
+            )}
+
+            {success && (
+                <div className="pt-6">
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+                            <span className="block sm:inline">{success}</span>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {error && (
+                <div className="pt-6">
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                            <span className="block sm:inline">{error}</span>
+                        </div>
+                    </div>  
+                </div>
             )}
 
             <main>{children}</main>

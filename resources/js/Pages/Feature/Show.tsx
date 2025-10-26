@@ -4,7 +4,6 @@ import { Feature } from '@/types';
 import { Head } from '@inertiajs/react';
 
 export default function Index({feature}: {feature: Feature}) {
-    console.log(feature);
     return (
         <AuthenticatedLayout
             header={

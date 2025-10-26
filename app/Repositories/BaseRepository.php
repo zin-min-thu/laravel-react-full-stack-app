@@ -43,6 +43,6 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     public function delete(Model $model) : bool
     {
-        return $this->model->delete();
+        return $model->delete();
     }
 }
