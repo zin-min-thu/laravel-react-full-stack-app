@@ -22,6 +22,9 @@ class FeatureResource extends JsonResource
             'description'   => $this->description,
             'user'          => new UserResource($this->user),
             'created_at'    => $this->created_at->format('Y-m-d H:i:s'),
+            'upvote_count'  => $this->upvote_count ?: 0,
+            'has_upvoted'   => (boolean) $this->has_upvoted,
+            'has_downvoted' => (boolean) $this->has_downvoted
         ];
     }
 }

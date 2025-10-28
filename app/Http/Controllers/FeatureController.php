@@ -8,6 +8,7 @@ use App\Http\Resources\FeatureResource;
 use App\Interfaces\FeatureRepositoryInterface;
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class FeatureController extends Controller
@@ -16,7 +17,7 @@ class FeatureController extends Controller
     {
         
     }
-    
+
     public function index()
     {
         $data = $this->featureRepository->getAll();
@@ -42,6 +43,8 @@ class FeatureController extends Controller
 
     public function show(Feature $feature)
     {
+        $feature = $this->featureRepository->show($feature);
+
         return Inertia::render('Feature/Show', [
             'feature' => new FeatureResource($feature),
         ]);
