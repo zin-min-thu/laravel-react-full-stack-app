@@ -49,7 +49,8 @@ class FeatureRepository extends BaseRepository implements FeatureRepositoryInter
 
     public function show(Model $model): ?Model
     {
-        $model->loadCount(['upvotes as upvote_count' => function ($query) {
+        $model->load('comments.user')
+            ->loadCount(['upvotes as upvote_count' => function ($query) {
                 $query->select(DB::raw('SUM(CASE WHEN upvote = 1 THEN 1 ELSE 0 END)'));
             }])
             ->loadExists([

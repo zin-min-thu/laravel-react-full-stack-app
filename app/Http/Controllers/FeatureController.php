@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FeatureStoreRequest;
 use App\Http\Requests\FeatureUpdateRequest;
+use App\Http\Resources\FeatureListResource;
 use App\Http\Resources\FeatureResource;
+use App\Http\Resources\UserResource;
 use App\Interfaces\FeatureRepositoryInterface;
 use App\Models\Feature;
 use Illuminate\Http\Request;
@@ -23,7 +25,7 @@ class FeatureController extends Controller
         $data = $this->featureRepository->getAll();
 
         return Inertia::render('Feature/Index', [
-            'features' => FeatureResource::collection($data),
+            'features' => FeatureListResource::collection($data),
         ]);
     }
 
@@ -44,9 +46,20 @@ class FeatureController extends Controller
     public function show(Feature $feature)
     {
         $feature = $this->featureRepository->show($feature);
-
+        // $resoruce = new FeatureResource($feature);
+        // dd($feature,$resoruce);
         return Inertia::render('Feature/Show', [
-            'feature' => new FeatureResource($feature),
+            'feature'   => new FeatureResource($feature),
+            'comments'  => Inertia::defer(function () use ($feature) {
+                return $feature->comments->where('user_id', auth()->id())->map(function ($comment) {
+                    return [
+                        'id'            => $comment->id,
+                        'comment'       => $comment->comment,
+                        'created_at'    => $comment->created_at->format('Y-m-d H:i:s'),
+                        'user'          => new UserResource($comment->user)
+                    ];
+                })->values();
+            })
         ]);
     }
 
@@ -54,6 +67,16 @@ class FeatureController extends Controller
     {
         return Inertia::render('Feature/Edit', [
             'feature' => new FeatureResource($feature),
+            // 'comments' => Inertia::defer(function () use ($feature) {
+            //     return $feature->comments->where('user_id', auth()->id())->map(function ($comment) {
+            //         return [
+            //             'id'            => $comment->id,
+            //             'comment'       => $comment->comment,
+            //             'created_at'    => $comment->created_at,
+            //             'user'          => new UserResource($comment->user)
+            //         ];
+            //     });
+            // })
         ]);
     }
 
