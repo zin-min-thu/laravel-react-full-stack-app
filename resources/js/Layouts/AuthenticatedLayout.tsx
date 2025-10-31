@@ -2,6 +2,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import { canAny, hasAnyRole } from '@/helpers';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
@@ -45,6 +46,14 @@ export default function Authenticated({
                                     Features
                                 </NavLink>
                             </div>
+                            {canAny(user, ['manage_users']) && <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('user.index')}
+                                    active={route().current('user.index')}
+                                >
+                                    Users
+                                </NavLink>
+                            </div>}
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
@@ -157,6 +166,14 @@ export default function Authenticated({
                             Features
                         </ResponsiveNavLink>
                     </div>
+                    {canAny(user, ['manage_users']) && <div className="space-y-1 pb-3 pt-2">
+                        <ResponsiveNavLink
+                            href={route('user.index')}
+                            active={route().current('user.index')}
+                        >
+                            Users
+                        </ResponsiveNavLink>
+                    </div>}
 
                     <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
                         <div className="px-4">
