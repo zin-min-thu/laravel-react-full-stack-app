@@ -16,6 +16,8 @@ export type PaginatedData<T = any> = {
 
 export type Comment = {
     id: number;
+    feature_id: number;
+    user_id: number;
     comment: string;
     user: User;
     created_at: string;

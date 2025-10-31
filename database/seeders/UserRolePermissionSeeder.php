@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Enums\EnumPermissionsEnum;
+use App\Enums\PermissionsEnum;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Enums\EnumRolesEnum;
+use App\Enums\RolesEnum;
 use App\Models\User;
 
 class UserRolePermissionSeeder extends Seeder
@@ -18,16 +18,16 @@ class UserRolePermissionSeeder extends Seeder
     public function run(): void
     {
         # create roles
-        $adminRole      =  Role::create(['name' => EnumRolesEnum::Admin->value]);
-        $commenterRole  =  Role::create(['name' => EnumRolesEnum::Commenter->value]);
-        $userRole       =  Role::create(['name' => EnumRolesEnum::User->value]);
+        $adminRole      =  Role::create(['name' => RolesEnum::Admin->value]);
+        $commenterRole  =  Role::create(['name' => RolesEnum::Commenter->value]);
+        $userRole       =  Role::create(['name' => RolesEnum::User->value]);
 
 
         # create permissions
-        $manageFeaturesPermission   = Permission::create(['name' => EnumPermissionsEnum::ManageFeatures->value]);
-        $manageUsersPermission      = Permission::create(['name' => EnumPermissionsEnum::ManageUsers->value]);
-        $manageCommentsPermission   = Permission::create(['name' => EnumPermissionsEnum::ManageComments->value]);
-        $upvoteDownvotePermission   = Permission::create(['name' => EnumPermissionsEnum::UpvoteDownvote->value]);
+        $manageFeaturesPermission   = Permission::create(['name' => PermissionsEnum::ManageFeatures->value]);
+        $manageUsersPermission      = Permission::create(['name' => PermissionsEnum::ManageUsers->value]);
+        $manageCommentsPermission   = Permission::create(['name' => PermissionsEnum::ManageComments->value]);
+        $upvoteDownvotePermission   = Permission::create(['name' => PermissionsEnum::UpvoteDownvote->value]);
 
         # sync roles and permissions
         $adminRole->syncPermissions([

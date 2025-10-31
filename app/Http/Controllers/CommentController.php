@@ -24,6 +24,10 @@ class CommentController extends Controller
 
     public function destroy(Request $request, Comment $comment)
     {
+        if(auth()->id() !== $comment->user_id) {
+            abort(403);
+        }
+
         $comment->delete();
 
         return back()->with('success', 'Comment deleted successfully');

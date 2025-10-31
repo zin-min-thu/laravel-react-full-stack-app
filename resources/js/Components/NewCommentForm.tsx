@@ -2,10 +2,13 @@ import { Feature } from "@/types";
 import CommentItem from "./CommentItem";
 import TextAreaInput from "./TextAreaInput";
 import { FormEventHandler } from "react";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import InputError from "./InputError";
+import { can } from "@/helpers";
 
 export default function NewCommentForm({feature}: {feature: Feature}) {
+
+    const user = usePage().props.auth.user
 
     const {data, setData, post, errors} = useForm( {
         comment: '',
@@ -15,7 +18,19 @@ export default function NewCommentForm({feature}: {feature: Feature}) {
         e.preventDefault();
         post(route('comment.store', feature.id), {
             preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => {
+                setData('comment', '');
+            }
         });
+    }
+
+    if(!can(user, 'manage_comments')) {
+        return (
+            <div className="text-center text-gray-400 mt-7">
+                <p>You don't have permission to comment.</p>
+            </div>
+        )
     }
 
     return(

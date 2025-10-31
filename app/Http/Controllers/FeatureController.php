@@ -51,7 +51,7 @@ class FeatureController extends Controller
         return Inertia::render('Feature/Show', [
             'feature'   => new FeatureResource($feature),
             'comments'  => Inertia::defer(function () use ($feature) {
-                return $feature->comments->where('user_id', auth()->id())->map(function ($comment) {
+                return $feature->comments->map(function ($comment) {
                     return [
                         'id'            => $comment->id,
                         'comment'       => $comment->comment,

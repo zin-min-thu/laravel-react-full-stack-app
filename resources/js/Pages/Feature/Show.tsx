@@ -7,8 +7,6 @@ import { Comment, Feature } from '@/types';
 import { Head } from '@inertiajs/react';
 
 export default function Index({feature, comments}: {feature: Feature, comments: Comment[]}) {
-    console.log(feature);
-    console.log(comments);
     return (
         <AuthenticatedLayout
             header={

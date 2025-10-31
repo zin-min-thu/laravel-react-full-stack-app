@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum EnumPermissionsEnum : string
+enum PermissionsEnum : string
 {
     case ManageFeatures = 'manage_features';
     case ManageUsers    = 'manage_users';
