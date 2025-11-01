@@ -40,6 +40,7 @@ export default function Authenticated({
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
+                                    prefetch={['mount', 'hover']}
                                     href={route('feature.index')}
                                     active={route().current('feature.index')}
                                 >
@@ -48,6 +49,7 @@ export default function Authenticated({
                             </div>
                             {canAny(user, ['manage_users']) && <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
+                                    prefetch
                                     href={route('user.index')}
                                     active={route().current('user.index')}
                                 >
@@ -85,6 +87,7 @@ export default function Authenticated({
 
                                     <Dropdown.Content>
                                         <Dropdown.Link
+                                            prefetch
                                             href={route('profile.edit')}
                                         >
                                             Profile
@@ -160,6 +163,7 @@ export default function Authenticated({
                     </div>
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
+                            prefetch={['mount', 'hover']}
                             href={route('feature.index')}
                             active={route().current('feature.index')}
                         >
@@ -186,7 +190,9 @@ export default function Authenticated({
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>
+                            <ResponsiveNavLink
+                                prefetch
+                                href={route('profile.edit')}>
                                 Profile
                             </ResponsiveNavLink>
                             <ResponsiveNavLink

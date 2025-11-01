@@ -14,7 +14,7 @@ export default function FeatureItem({feature}: {feature: Feature}) {
                 <FeatureUpvoteDownvote feature={feature} />
                 <div className="flex-1">
                     <h2 className="text-2xl mb-2">
-                        {feature.name}
+                        <Link prefetch href={route('feature.show', feature.id)}>{feature.name}</Link>
                     </h2>
                     <p>
                         {isExpanded ? feature.description : `${feature.description.substring(0, 200)}...`}
