@@ -1,61 +1,150 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Laravel 12 + React + TypeScript + Inertia + SSR + Role & Permission
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern full-stack web application built using **Laravel 12**, **React**, **TypeScript**, **Inertia.js**, and **TailwindCSS**, featuring **Server-Side Rendering (SSR)** and a complete **Role & Permission** system.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🧱 Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Backend:** Laravel 12 (PHP 8.2+)
+- **Frontend:** React + TypeScript + Inertia.js
+- **Styling:** TailwindCSS
+- **Authentication:** Laravel Breeze / Fortify / Jetstream (depending on setup)
+- **Authorization:** Spatie Laravel Permission
+- **Build Tool:** Vite
+- **SSR:** Inertia SSR (Node.js)
+- **Database:** MySQL / PostgreSQL (configurable)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📦 Installation Guide
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1️⃣ Clone the Repository
+*Clone with HTTPS*
+```
+git clone https://github.com/zin-min-thu/laravel-react-full-stack-app.git
+```
+*Clone with SSH*
+```
+git clone git@github.com:zin-min-thu/laravel-react-full-stack-app.git
+```
+*Note: Prefer to use SSH. Ask your project maintainer if you need to submit your public key.*
+Then
+```
+cd laravel-react-full-stack-app
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2️⃣ Install PHP Dependencies
+Make sure you have Composer installed, then run:
+```
+composer install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3️⃣ Install Node Dependencies
+Make sure you have Node.js (>=18) and npm or yarn installed:
+```
+npm install
+```
+or
+```
+yarn install
+```
+### 4️⃣ Create Environment File
+Copy the example .env file:
+```
+cp .env.example .env
+```
+Then update the following variables in .env:
+```
+    APP_NAME="Your Project Name"
+    APP_URL=http://localhost
+    VITE_APP_URL="${APP_URL}"
 
-## Laravel Sponsors
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_db_name
+    DB_USERNAME=root
+    DB_PASSWORD=your_db_password
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    # Inertia SSR
+    SSR_URL=http://localhost:13714
 
-### Premium Partners
+```
+Then Generate Application Key :
+```
+php artisan key:generate
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```
+### 5️⃣ Run Migrations and Seeders
+Run migrations to create database tables:
+```
+php artisan migrate
+```
+Then run your UserRolePermissionSeeder to create users, roles, and permissions:
+```
+php artisan db:seed --class=UserRolePermissionSeeder
 
-## Contributing
+```
+### 6️⃣ Build Frontend Assets
+For development:
+```
+npm run dev
+```
+For production:
+```
+npm run build
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 7️⃣ Run Inertia SSR Server
+In a separate terminal:
+```
+php artisan inertia:start-ssr
+```
+Or using Node directly:
+```
+node bootstrap/ssr/ssr.mjs
+```
+*The SSR server must be running for server-side rendering to work.*
 
-## Code of Conduct
+### 8️⃣ Serve the Laravel Application
+*Using artisan:*
+```
+php artisan serve
+```
+*Using Composer:*
+```
+composer run dev
+```
+Now visit:
+👉 http://localhost:8000
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Useful Commands
 
-## Security Vulnerabilities
+| Command                            | Description                          |
+| ---------------------------------- | ------------------------------------ |
+| `php artisan serve`                | Start Laravel backend server         |
+| `npm run dev`                      | Start Vite dev server                |
+| `npm run build`                    | Build frontend assets for production |
+| `php artisan migrate:fresh --seed` | Reset DB and run all seeders         |
+| `php artisan inertia:start-ssr`    | Start Inertia SSR server             |
+| `php artisan tinker`               | Open Laravel REPL                    |
+| `php artisan route:list`           | Show all routes                      |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+### Deployment Notes
+- Run npm run build before deploying.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Ensure APP_ENV=production and APP_DEBUG=false.
+
+- Make sure SSR server is configured in production if using SSR.
+
+- You may use PM2 or Supervisor to keep the SSR process running.
+
+### 🧑‍💻 Author
+**Zin Min Thu** Web Developer
+*zinminthu.dev@gmail.com*
+
+**Portfolio:**
+[https://zinminthu.vercel.app](https://zinminthu.vercel.app/)
+[https://zin-min-thu.github.io](https://zin-min-thu.github.io/)
