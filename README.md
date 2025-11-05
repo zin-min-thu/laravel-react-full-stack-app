@@ -159,9 +159,12 @@ Now visit:
 - You may use PM2 or Supervisor to keep the SSR process running.
 
 ### 🧑‍💻 Author
-**Zin Min Thu** Web Developer
-*zinminthu.dev@gmail.com*
+**Zin Min Thu** (Web Developer)
 
-**Portfolio:**
+Contact: *zinminthu.dev@gmail.com*
+
+**Portfolio Website**
+
 [https://zinminthu.vercel.app](https://zinminthu.vercel.app/)
+
 [https://zin-min-thu.github.io](https://zin-min-thu.github.io/)
