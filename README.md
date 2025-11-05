@@ -97,6 +97,14 @@ npm run build
 ```
 
 ### 7️⃣ Run Inertia SSR Server
+
+Build the SSR bundle
+```
+npm run build
+```
+Vite will generate:
+Dir : bootstrap/ssr/ssr.mjs
+
 In a separate terminal:
 ```
 php artisan inertia:start-ssr
@@ -118,6 +126,15 @@ composer run dev
 ```
 Now visit:
 👉 http://localhost:8000
+
+**👤 Users Login**
+
+| Email                      | Password      | Role         |
+| ---------------------------|---------------|--------------|
+| `admin@example.com`        | password      |   Admin      |
+| `commenter@example.com`    | password      |   Commenter  |
+| `user@example.com`         | password      |   User       |
+
 
 ### Useful Commands
 
